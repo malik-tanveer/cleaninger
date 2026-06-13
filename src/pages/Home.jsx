@@ -12,7 +12,7 @@ import visualy from "/visualy.png"
 import wayline from "/wayline.png"
 
 import img2 from "/img2.avif";
-
+import { Check } from "lucide-react";
 
 function Hero() {
   const formik = useFormik({
@@ -176,71 +176,48 @@ function Hero() {
     },
   ];
   
-  const pricingPlans = [
-    {
-      id: 1,
-      price: "$19",
-      title: "Basic cleaning package",
-      description: "Ideal for regular maintenance of your home or office.",
-      features: [
-        "Dusting",
-        "Vacuuming",
-        "Sweeping and mopping",
-        "Surface cleaning"
-      ],
-      isPopular: false
-    },
-    {
-      id: 2,
-      price: "$59",
-      title: "Standard cleaning package",
-      description: "Includes all services in the Basic package plus additional services.",
-      features: [
-        "Everything in basic cleaning",
-        "Bathroom scrubbing",
-        "Kitchen appliance cleaning",
-        "Baseboard and trim cleaning"
-      ],
-      isPopular: true // Center card with different styling
-    },
-    
-    {
-      id: 3,
-      price: "$119",
-      title: "Deep cleaning package",
-      description: "Perfect for seasonal cleaning or move-ins/outs.",
-      features: [
-        "Everything in standard cleaning",
-        "Carpet cleaning",
-        "Window washing",
-        "High dusting (e.g., ceiling fans)"
-      ],
-      isPopular: false
-    }
-  ];
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: {
-      opacity: 0,
-      y: 60,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-      },
-    },
-  };
+  const plans = [
+  {
+    price: "$19",
+    title: "Basic cleaning package",
+    description:
+      "Ideal for regular maintenance of your home or office.",
+    features: [
+      "Dusting",
+      "Vacuuming",
+      "Sweeping and mopping",
+      "Surface cleaning",
+    ],
+    featured: false,
+  },
+  {
+    price: "$59",
+    title: "Standard cleaning package",
+    description:
+      "Includes all services in the Basic package plus additional services.",
+    features: [
+      "Everything in basic cleaning",
+      "Bathroom scrubbing",
+      "Kitchen appliance cleaning",
+      "Baseboard and trim cleaning",
+    ],
+    featured: true,
+  },
+  
+  {
+    price: "$119",
+    title: "Deep cleaning package",
+    description:
+      "Perfect for seasonal cleaning or move-ins/outs.",
+    features: [
+      "Everything in standard cleaning",
+      "Carpet cleaning",
+      "Window washing",
+      "High dusting (e.g., ceiling fans)",
+    ],
+    featured: false,
+  },
+];
 
   const blogPosts = [
     {
@@ -707,139 +684,116 @@ const cardVariant = {
       </div>
     </section>
 
-    <motion.section
-      className="py-16 px-4 min-h-screen flex flex-col justify-center items-center"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={containerVariants}
-    >
-      {/* Section Heading */}
-      <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="text-4xl md:text-6xl font-bold text-[#1e293b] text-center mb-16 tracking-tight"
-      >
-        Our pricing
-      </motion.h2>
+    <section className="bg-[#f5f5f5] py-24 px-5 overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="text-center text-5xl md:text-7xl font-bold text-[#1e1e1e] mb-20"
+        >
+          Our pricing
+        </motion.h2>
 
-      {/* Pricing Cards Grid */}
-      <motion.div
-        variants={containerVariants}
-        className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch"
-      >
-        {pricingPlans.map((plan) => (
-          <motion.div
-            key={plan.id}
-            variants={cardVariants}
-            whileHover={{
-              y: -12,
-              scale: 1.03,
-            }}
-            transition={{ duration: 0.3 }}
-            className={`p-10 rounded-3xl flex flex-col justify-between transition-all duration-300 ${
-              plan.isPopular
-                ? "bg-[#3b42ff] text-white shadow-xl md:scale-105 z-10"
-                : "bg-[#eef5fc] text-slate-800 shadow-sm border border-slate-100"
-            }`}
-          >
-            {/* Upper Content */}
-            <div>
+        {/* Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          {plans.map((plan, index) => (
+            <motion.div
+              key={index}
+              initial={{
+                opacity: 0,
+                y: 80,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: index * 0.2,
+              }}
+              viewport={{ once: true }}
+              whileHover={{
+                y: -15,
+                scale: 1.03,
+              }}
+              className={`rounded-2xl p-12 relative ${
+                plan.featured
+                  ? "bg-gradient-to-r from-indigo-600 to-blue-600 text-white"
+                  : "bg-[#dfeaf4]"
+              }`}
+            >
               {/* Price */}
-              <div className="flex items-baseline mb-6">
-                <span className="text-5xl font-black tracking-tight">
-                  {plan.price}
-                </span>
-
-                <span
-                  className={`text-sm font-semibold ml-2 ${
-                    plan.isPopular
-                      ? "text-blue-100"
-                      : "text-slate-500"
-                  }`}
-                >
-                  / visit
-                </span>
-              </div>
-
-              {/* Title & Description */}
-              <h3 className="text-2xl font-bold mb-3 tracking-tight">
-                {plan.title}
+              <h3 className="font-bold text-6xl mb-8">
+                {plan.price}
+                <span className="text-xl font-semibold"> / visit</span>
               </h3>
 
+              {/* Title */}
+              <h4 className="text-3xl font-bold mb-4">
+                {plan.title}
+              </h4>
+
+              {/* Description */}
               <p
-                className={`text-[15px] font-medium leading-relaxed mb-8 ${
-                  plan.isPopular
-                    ? "text-blue-100"
-                    : "text-slate-400"
+                className={`mb-12 text-lg ${
+                  plan.featured
+                    ? "text-white/80"
+                    : "text-gray-600"
                 }`}
               >
                 {plan.description}
               </p>
 
-              {/* Features List */}
-              <div className="mb-8">
-                <h4 className="font-bold text-lg mb-4">
-                  Includes:
-                </h4>
+              <h5 className="font-bold text-3xl mb-8">
+                Includes:
+              </h5>
 
-                <ul className="space-y-3.5">
-                  {plan.features.map((feature, i) => (
-                    <motion.li
-                      key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{
-                        delay: i * 0.08,
-                        duration: 0.4,
-                      }}
-                      viewport={{ once: true }}
-                      className="flex items-start gap-3 text-[15px] font-medium"
+              <ul className="space-y-5 mb-12">
+                {plan.features.map((item, i) => (
+                  <li
+                    key={i}
+                    className="flex items-center gap-3 text-lg"
+                  >
+                    <div
+                      className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                        plan.featured
+                          ? "bg-white/20"
+                          : "bg-gray-300"
+                      }`}
                     >
-                      <svg
-                        className={`w-5 h-5 shrink-0 mt-0.5 p-0.5 rounded-full ${
-                          plan.isPopular
-                            ? "bg-blue-500/30 text-white"
-                            : "bg-blue-50 text-blue-600"
-                        }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="3"
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
+                      <Check size={14} />
+                    </div>
 
-                      <span>{feature}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
 
-            {/* CTA Button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`w-full py-4 rounded-xl font-bold text-[15px] tracking-wide mt-auto ${
-                plan.isPopular
-                  ? "bg-[#ffd200] text-slate-900 hover:bg-[#e6bd00]"
-                  : "bg-[#3b42ff] text-white hover:bg-[#2a30d9]"
-              }`}
-            >
-              Get started
-            </motion.button>
-          </motion.div>
-        ))}
-      </motion.div>
-    </motion.section>
-
+              {/* Button */}
+              <motion.button
+                whileHover={{
+                  scale: 1.08,
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
+                className={`px-8 py-4 rounded-lg font-bold text-lg ${
+                  plan.featured
+                    ? "bg-yellow-400 text-black"
+                    : "bg-indigo-600 text-white"
+                }`}
+              >
+                Get Started
+              </motion.button>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
 
     <section className="bg-[#EBF4FA] py-16 px-6 md:px-16 min-h-screen font-sans">
       <div className="max-w-7xl mx-auto">
@@ -899,8 +853,6 @@ const cardVariant = {
         </motion.div>
       </div>
     </section>
-
-
 
     </>
   );
