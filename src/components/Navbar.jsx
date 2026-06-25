@@ -141,7 +141,6 @@ function Navbar() {
             className="bg-[#4B4BFF] hover:bg-[#3c3cff] transition-all duration-300 px-6 py-3 rounded-xl flex items-center gap-3 font-semibold text-white"
           >
             Contact us
-
             <span className="bg-white text-black p-2 rounded-lg">
               <FiArrowRight />
             </span>

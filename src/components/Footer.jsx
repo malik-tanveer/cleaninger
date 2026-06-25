@@ -8,9 +8,10 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
-  return (
+  return ( 
     <footer className="w-full bg-[#12141d] text-gray-400 overflow-hidden">
       {/* Top Banner */}
       <motion.div
@@ -87,31 +88,54 @@ const Footer = () => {
         <div>
           <ul className="space-y-4">
             <li>
-              <a href="#" className="text-[#ffcb05] font-semibold">
+              <Link to="/" className="text-[#ffcb05] font-semibold">
                 Home
-              </a>
+              </Link>
             </li>
-            <li><a href="#">Home 2</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Service Static</a></li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact</a></li>
+            <li>
+              <Link to="/home2">Home 2</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/services">Services</Link>
+            </li>
+            <li>
+              <Link to="/service-static">Service Static</Link>
+            </li>
+            <li>
+              <Link to="/pricing">Pricing</Link>
+            </li>
+            <li>
+              <Link to="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
           </ul>
         </div>
 
         {/* Links 2 */}
         <div>
           <ul className="space-y-4">
-            <li><a href="#">Style Guide</a></li>
-            <li><a href="#">Instructions</a></li>
-            <li><a href="#">Changelog</a></li>
-            <li><a href="#">Licenses</a></li>
-            <li><a href="#">Link in Bio</a></li>
-            <li><a href="#">Coming Soon</a></li>
-            <li><a href="#">Password Protected</a></li>
-            <li><a href="#">Error 404</a></li>
+            <li>
+              <Link to="/privacy-policy">Privacy Policy</Link>
+            </li>
+
+            {/* In pages ka route abhi nahi hai, is liye filhal 404 pe bhej raha hoon */}
+            <li>
+              <Link to="/style-guide">Style Guide</Link>
+            </li>
+            <li>
+              <Link to="/instructions">Instructions</Link>
+            </li>
+            <li>
+              <Link to="/changelog">Changelog</Link>
+            </li>
+            <li>
+              <Link to="/licenses">Licenses</Link>
+            </li>
           </ul>
         </div>
 
@@ -119,12 +143,12 @@ const Footer = () => {
         <div className="space-y-6">
           <div className="flex items-center gap-3">
             <FaEnvelope />
-            <span>info@example.com</span>
+            <a href="mailto:info@example.com">info@example.com</a>
           </div>
 
           <div className="flex items-center gap-3">
             <FaPhoneAlt />
-            <span>+1 (234) 567-8901</span>
+            <a href="tel:+12345678901">+1 (234) 567-8901</a>
           </div>
 
           <div className="flex items-start gap-3">
@@ -140,36 +164,38 @@ const Footer = () => {
         </div>
       </motion.div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-5">
           <p className="text-sm text-center">
             Designed by{" "}
-            <span className="text-white font-semibold">
-              Webestica
-            </span>
-            , Powered by{" "}
-            <span className="text-white font-semibold">
-              Webflow
-            </span>
+            <span className="text-white font-semibold">Nimra Hameed</span>,
+            Powered by <span className="text-white font-semibold">Tanveer</span>
           </p>
 
           <div className="flex items-center gap-5 text-white text-xl">
-            {[FaFacebookF, FaInstagram, FaXTwitter].map(
-              (Icon, index) => (
-                <motion.a
-                  key={index}
-                  href="#"
-                  whileHover={{
-                    scale: 1.2,
-                    y: -5,
-                  }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Icon />
-                </motion.a>
-              )
-            )}
+            <motion.a
+              href="#"
+              whileHover={{ scale: 1.2, y: -5 }}
+              transition={{ duration: 0.2 }}
+            >
+              <FaFacebookF />
+            </motion.a>
+
+            <motion.a
+              href="#"
+              whileHover={{ scale: 1.2, y: -5 }}
+              transition={{ duration: 0.2 }}
+            >
+              <FaInstagram />
+            </motion.a>
+
+            <motion.a
+              href="#"
+              whileHover={{ scale: 1.2, y: -5 }}
+              transition={{ duration: 0.2 }}
+            >
+              <FaXTwitter />
+            </motion.a>
           </div>
         </div>
       </div>

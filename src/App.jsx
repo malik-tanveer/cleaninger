@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+import NotFound404 from "./pages/NotFound404";
 import Home from "./pages/Home";
 import Home2 from "./pages/Home2";
 import About from "./pages/About";
@@ -27,6 +28,8 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/404" element={<NotFound404 />} />
+        <Route path="*" element={<NotFound404 />} />
       </Routes>
 
       <Footer />
